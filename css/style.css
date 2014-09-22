@@ -1,0 +1,61 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background: rgb(230, 230, 230);
+	color: #414141;
+}
+
+.menu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+/*--------------- Menu -----------------*/
+
+#left-menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 0;
+	width: 300px;
+	color: white;
+	background: rgb(65, 87, 121);
+}
+
+#left-menu li {
+	text-align: center;
+	color: rgb(251, 253, 255);
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.38);
+	border-bottom: 1px solid rgb(44, 62, 82);
+	padding: 15px 0;
+}
+
+#left-menu li.sub-title {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+#left-menu li.title {
+	font-size: 35px;
+	padding: 27px 0;
+}
+
+#city-list {
+	border: 1px solid white;
+	font-size: 16px;
+	cursor: pointer;
+	color: rgb(38, 48, 61);
+	background: rgb(243, 250, 255);
+	border-radius: 5px;
+	padding: 5px 10px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.61);
+	outline: none;
+}
+
+/*-------------- Content ----------------*/
+
+
+
