@@ -18,6 +18,17 @@ body {
 	color: #414141;
 }
 
+.row:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
+
+.col-1-4 {
+	float: left;
+	width: 25%;
+}
+
 .menu {
 	list-style-type: none;
 	margin: 0;
@@ -34,7 +45,6 @@ body {
 
 #left-menu {
 	position: absolute;
-	visibility: hidden;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -58,6 +68,22 @@ body {
 	opacity: 1;
 	-webkit-transition: opacity 0.5s;
 	transition: opacity 0.5s;
+}
+
+#menuBtn {
+	position: absolute;
+	color: rgba(255, 255, 255, 0.87);
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.35);
+	font-size: 18px;
+	top: 4px;
+	right: -27px;
+	background: rgb(65, 87, 121);
+	border: 1px solid rgb(50, 82, 112);
+	border-left: 0;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	padding: 8px 6px 8px 7px;
+	cursor: pointer;
 }
 
 .st-menu-open #left-menu::after {
@@ -128,6 +154,55 @@ body {
 	height: 100%
 }
 
+#main-content h1 {
+	margin: 0;
+	padding: 20px 0;
+	text-align: center;
+	font-weight: 300;
+	font-size: 30px;
+}
+
+#main-content .container {
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 5px;
+}
+
+#main-content .container .item {
+	padding: 2%;
+}
+
+#main-content .container .item .thumbnail {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	height: auto;
+	background: rgba(0, 0, 0, 0.59);
+	font-size: 43px;
+	color: rgb(235, 234, 197);
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.47);
+	border-radius: 5px;
+	padding: 35% 0;
+	cursor: pointer;
+}
+#main-content .container .item .thumbnail:hover { box-shadow: 0 0 15px rgb(178, 222, 247); }
+
+#main-content .container .item .thumbnail .date {
+	position: absolute;
+	left: 7px;
+	top: 6px;
+	color: rgba(255, 255, 255, 0.91);
+	font-size: 16px;
+}
+
+#main-content .container .item .thumbnail .temperature {
+	position: absolute;
+	bottom : 6px;
+	right: 15px;
+	color: rgba(255, 255, 255, 0.91);
+	font-size: 16px;
+}
+#main-content .container .item .thumbnail .temperature .low { opacity: 0.7; }
 
 /*------------- Animation ---------------*/
 

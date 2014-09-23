@@ -18,6 +18,7 @@
 <div id="st-container" class="anim-scale-down" ng-class="menuOpen">
 
 	<div id="left-menu" class="anim-scale-down">
+		<div id="menuBtn" ng-click="menuToggle()"><i class="wi wi-lightning"></i></div>
 		<ul class="menu">
 			<li class="title"><i class="wi wi-day-lightning"></i> Weather</li>
 			<li class="sub-title">Выберите город:</li>
@@ -35,7 +36,50 @@
 	</div>
 
 	<div id="main-content">
-		<button ng-click="menuToggle()" style="float:right;">Click</button>
+		<h1>Москва</h1>
+		<div class="container row">
+
+			<div class="col-1-4 item">
+				<div class="thumbnail">
+					<div class="date">12 Mar</div>
+					<i class="wi wi-day-cloudy-gusts"></i>
+					<div class="temperature"><span class="high">22°</span> <span class="low">15°</span></div>
+				</div>
+			</div>
+
+			<div class="col-1-4 item">
+				<div class="thumbnail">
+					<div class="date">13 Mar</div>
+					<i class="wi wi-day-sunny"></i>
+					<div class="temperature"><span class="high">27°</span> <span class="low">16°</span></div>
+				</div>
+			</div>
+
+			<div class="col-1-4 item">
+				<div class="thumbnail">
+					<div class="date">14 Mar</div>
+					<i class="wi wi-day-storm-showers"></i>
+					<div class="temperature"><span class="high">28°</span> <span class="low">13°</span></div>
+				</div>
+			</div>
+
+			<div class="col-1-4 item">
+				<div class="thumbnail">
+					<div class="date">15 Mar</div>
+					<i class="wi wi-day-snow-wind"></i>
+					<div class="temperature"><span class="high">21°</span> <span class="low">10°</span></div>
+				</div>
+			</div>
+
+			<div class="col-1-4 item">
+				<div class="thumbnail">
+					<div class="date">16 Mar</div>
+					<i class="wi wi-meteor"></i>
+					<div class="temperature"><span class="high">23°</span> <span class="low">14°</span></div>
+				</div>
+			</div>
+
+		</div>
 	</div>
 
 </div>
