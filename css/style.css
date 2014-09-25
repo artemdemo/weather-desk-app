@@ -170,6 +170,7 @@ body {
 
 #main-content .container .item {
 	padding: 2%;
+	z-index: 50;
 }
 
 #main-content .container .item .thumbnail {
@@ -177,7 +178,7 @@ body {
 	text-align: center;
 	width: 100%;
 	height: auto;
-	background: rgba(0, 0, 0, 0.59);
+	background: #5D5D5D;
 	font-size: 43px;
 	color: rgb(235, 234, 197);
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.47);
@@ -204,7 +205,9 @@ body {
 }
 #main-content .container .item .thumbnail .temperature .low { opacity: 0.7; }
 
-/*------------- Animation ---------------*/
+/*-------------------------------------------------*/
+/*--------------- Menu Animation ------------------*/
+/*-------------------------------------------------*/
 
 #st-container.anim-scale-down {
 	-webkit-perspective: 1500px;
@@ -238,3 +241,36 @@ body {
 #left-menu.anim-scale-down::after {
 	display: none;
 }
+
+/*-------------------------------------------------*/
+/*-------------- Pop Up Animation -----------------*/
+/*-------------------------------------------------*/
+
+/* http://localhost/AngularJS/Weather/ButtonComponentMorph/index2.html */
+
+/*
+.weather-pop-up {
+	visibility: hidden;
+	position: absolute;
+	font-size: 20px;
+	color: rgb(235, 234, 197);
+	border-radius: 5px;
+	padding: 5%;
+	z-index: 49;
+}
+
+.item.w-pop-up-open .weather-pop-up {
+	visibility: visible;
+	width: 420px;
+	height: 300px;
+	top: 50%;
+	left: 50%;
+	margin: -210px 0 0 -150px;
+}
+
+*/
+
+
+
+
+
