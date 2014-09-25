@@ -1,6 +1,6 @@
 var weather = angular.module('weather', [])
 
-.controller('mainCtrl', function($scope){
+.controller('mainCtrl', function($scope, $http){
 	
 	$scope.menuOpen = '';
 
@@ -12,6 +12,14 @@ var weather = angular.module('weather', [])
 		$scope.weatherPopUpOpen = ! $scope.weatherPopUpOpen ? true : false;
 	}
 
-	
-
+/*
+	$http({method: 'GET', url: 'http://api.openweathermap.org/data/2.5/forecast?q=moscow,ru&units=metric&lang=ru'}).
+		success(function(data, status, headers, config) {
+			console.log( data );
+		}).
+		error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+		});
+*/
 })
