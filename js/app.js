@@ -1,8 +1,10 @@
-var weather = angular.module('weather', [])
+var weather = angular.module('weather', ['ngAnimate'])
 
-.controller('mainCtrl', function($scope, $http){
+.controller('mainCtrl', function($scope, $http, $timeout){
 	
 	$scope.menuOpen = '';
+
+	$scope.forecast = [];
 
 	$scope.menuToggle = function() {
 		$scope.menuOpen = ! $scope.menuOpen ? 'st-menu-open' : '';
@@ -18,7 +20,8 @@ var weather = angular.module('weather', [])
 		success(function(data, status, headers, config) {
 			console.log( data );
 			$scope.weatherObject = data;
-			$scope.forecast = data.list;
+			$scope.forecast = [];
+			createForecastList( data.list );
 		}).
 		error(function(data, status, headers, config) {
 			console.log( data );
@@ -36,6 +39,17 @@ var weather = angular.module('weather', [])
 
 	$scope.getWeatherIcon = function( icon ) {
 		return 'http://openweathermap.org/img/w/'+ icon +'.png'
+	}
+
+	function createForecastList( list ) {
+		for ( var i = 0; i < list.length; i++ ) {
+			(function(index){
+				var timer = 200 * index;
+				$timeout(function(){
+					$scope.forecast.push( list[index] );
+				}, timer);
+			})(i);
+		}
 	}
 
 })
