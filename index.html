@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Weather</title>
+	<title>Приложение на AngularJS: анимация, работа с внешими API, $http, GET, promises</title>
 
 	<!-- weather icons -->
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
@@ -38,6 +38,7 @@
 
 	<div id="main-content">
 		<h1>{{ cityTitle }}</h1>
+		<div id="loading" ng-hide="forecast.length > 0">Загрузка данных...</div>
 		<div class="container row">
 
 			<div ng-repeat="day in forecast" class="col-1-4 item animated">

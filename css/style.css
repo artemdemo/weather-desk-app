@@ -177,6 +177,10 @@ body {
 	font-size: 30px;
 }
 
+#loading {
+	text-align: center;
+}
+
 #main-content .container {
 	width: 80%;
 	margin: 0 auto;
@@ -352,35 +356,6 @@ body {
             transform: perspective(400px);
   }
 }
-
-
-/*-------------------------------------------------*/
-/*-------------- Pop Up Animation -----------------*/
-/*-------------------------------------------------*/
-
-/* http://localhost/AngularJS/Weather/ButtonComponentMorph/index2.html */
-
-/*
-.weather-pop-up {
-	visibility: hidden;
-	position: absolute;
-	font-size: 20px;
-	color: rgb(235, 234, 197);
-	border-radius: 5px;
-	padding: 5%;
-	z-index: 49;
-}
-
-.item.w-pop-up-open .weather-pop-up {
-	visibility: visible;
-	width: 420px;
-	height: 300px;
-	top: 50%;
-	left: 50%;
-	margin: -210px 0 0 -150px;
-}
-
-*/
 
 
 

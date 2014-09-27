@@ -34,6 +34,7 @@ var weather = angular.module('weather', ['ngAnimate'])
 		}
 	}
 })
+
 .controller('mainCtrl', function($scope, $timeout, weatherFactory){
 	
 	$scope.menuOpen = '';
