@@ -90,7 +90,24 @@ var weather = angular.module('weather', ['ngAnimate'])
 	$scope.openDayPopUp = function(day) {
 		console.log( day );
 		var selector = '.day-' + day.id;
-		angular.element( document.querySelector(selector) ).toggleClass( 'pop-up-open' );
+		var dayItemElement = document.querySelector(selector);
+		var thumbnailElement = dayItemElement.querySelector('.thumbnail');
+		var popUpElement = document.querySelector( '#day-pop-up' );
+
+		popUpElement.style.width = thumbnailElement.offsetWidth + 'px';
+		popUpElement.style.height = thumbnailElement.offsetHeight + 'px';
+		popUpElement.style.top = thumbnailElement.getBoundingClientRect().top + 'px';
+		popUpElement.style.left = thumbnailElement.getBoundingClientRect().left + 'px';
+
+		$timeout(function(){
+			angular.element( dayItemElement ).toggleClass( 'pop-up-open' );
+			angular.element( popUpElement ).toggleClass( 'pop-up-open' );
+			angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
+		});
+	}
+
+	$scope.closePopUp = function() {
+		
 	}
 
 	$scope.addDayClass = function( index ) {

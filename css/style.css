@@ -41,6 +41,58 @@ body {
 	background: gray;
 }
 
+/*--------------- Icons -----------------*/
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon/icomoon.eot?i64fx9');
+	src:url('../fonts/icomoon/icomoon.eot?#iefixi64fx9') format('embedded-opentype'),
+		url('../fonts/icomoon/icomoon.woff?i64fx9') format('woff'),
+		url('../fonts/icomoon/icomoon.ttf?i64fx9') format('truetype'),
+		url('../fonts/icomoon/icomoon.svg?i64fx9#icomoon') format('svg');
+}
+
+.icon:before {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-transform: none;
+	font-weight: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-family: 'icomoon';
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-close {
+	z-index: 100;
+	display: block;
+	overflow: hidden;
+	width: 3em;
+	height: 3em;
+	text-align: center;
+	line-height: 3;
+	cursor: pointer;
+}
+
+.icon-close::before {
+	content: "\e601";
+}
+
+.icon-close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+.icon-close:hover {
+	color: #fff;
+}
+
 /*--------------- Menu -----------------*/
 
 #left-menu {
@@ -190,8 +242,6 @@ body {
 
 #main-content .container .item {
 	padding: 2%;
-	z-index: 50;
-	position: relative;
 }
 
 #main-content .container .item .thumbnail {
@@ -199,6 +249,7 @@ body {
 	text-align: center;
 	width: 100%;
 	height: auto;
+	z-index: 50;
 	background: #5D5D5D;
 	border-radius: 5px;
 	padding: 35% 0;
@@ -367,4 +418,41 @@ body {
 	position: initial;
 }
 
+#day-pop-up {
+	position: absolute;
+	z-index: 49;
+	margin: 0;
+	background: none;
+	border-radius: 5px;
+}
 
+#day-pop-up-bg::before {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	background: rgba(226, 226, 226, 0.7);
+	content: '';
+	opacity: 0;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+	pointer-events: none;
+}
+
+#day-pop-up.pop-up-open {
+	z-index: 100;
+	background: #5D5D5D;
+	top: 50% !important;
+	left: 50% !important;
+	width: 400px !important;
+	height: 200px !important;
+	margin: -100px 0 0 -200px;
+	-webkit-transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+	transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+}
+
+#day-pop-up-bg.pop-up-open::before {
+	opacity: 1;
+}

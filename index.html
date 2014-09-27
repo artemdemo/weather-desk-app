@@ -38,7 +38,7 @@
 
 	<div id="main-content">
 		<h1>{{ cityTitle }}</h1>
-		
+
 		<div id="loading" ng-hide="forecast.length > 0">Загрузка данных...</div>
 
 		<div class="container row">
@@ -53,10 +53,15 @@
 						<span class="low">{{ day.temp_min }}°</span>
 					</div>
 				</div>
-				<div class="day-pop-up"></div>
 			</div>
 
 		</div>
+
+		<div id="day-pop-up">
+			<span class="icon icon-close" ng-click="closePopUp()">Close the dialog</span>
+		</div>
+		<div id="day-pop-up-bg"></div>
+
 	</div>
 
 </div>
