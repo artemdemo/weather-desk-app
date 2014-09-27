@@ -66,6 +66,7 @@ var weather = angular.module('weather', ['ngAnimate'])
 				var timer = 200 * index;
 				$timeout(function(){
 					$scope.forecast.push({
+						id: index,
 						date: weatherFactory.convertDate( list[index].dt ),
 						temp_min: list[index].temp.min.toFixed(0),
 						temp_max: list[index].temp.max.toFixed(0),
@@ -84,6 +85,16 @@ var weather = angular.module('weather', ['ngAnimate'])
 		weatherFactory.getNewForecast( $scope.selectedCity ).then(function( list ){
 			createForecastList( list );
 		})
+	}
+
+	$scope.openDayPopUp = function(day) {
+		console.log( day );
+		var selector = '.day-' + day.id;
+		angular.element( document.querySelector(selector) ).toggleClass( 'pop-up-open' );
+	}
+
+	$scope.addDayClass = function( index ) {
+		return 'day-' + index;
 	}
 
 })

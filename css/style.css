@@ -191,6 +191,7 @@ body {
 #main-content .container .item {
 	padding: 2%;
 	z-index: 50;
+	position: relative;
 }
 
 #main-content .container .item .thumbnail {
@@ -358,6 +359,12 @@ body {
 }
 
 
+/*---------------------------------------------------------*/
+/*------------------ Pop Up Animation ---------------------*/
+/*---------------------------------------------------------*/
 
+#main-content .container .item.pop-up-open {
+	position: initial;
+}
 
 

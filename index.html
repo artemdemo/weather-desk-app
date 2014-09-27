@@ -38,10 +38,12 @@
 
 	<div id="main-content">
 		<h1>{{ cityTitle }}</h1>
+		
 		<div id="loading" ng-hide="forecast.length > 0">Загрузка данных...</div>
+
 		<div class="container row">
 
-			<div ng-repeat="day in forecast" class="col-1-4 item animated">
+			<div ng-repeat="day in forecast" class="col-1-4 item animated" ng-class="addDayClass($index)" ng-click="openDayPopUp(day)">
 				<div class="thumbnail">
 					<div class="date">{{ day.date }}</div>
 					<img class="icon" ng-src="{{ day.icon_url }}" />
@@ -51,7 +53,7 @@
 						<span class="low">{{ day.temp_min }}°</span>
 					</div>
 				</div>
-				<div class="weather-pop-up"></div>
+				<div class="day-pop-up"></div>
 			</div>
 
 		</div>
