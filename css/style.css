@@ -102,6 +102,8 @@ body {
 	padding: 15px 0;
 }
 
+#left-menu li .wrapper {}
+
 #left-menu li.sub-title {
 	border-bottom: 0;
 	padding-bottom: 0;
@@ -124,6 +126,18 @@ body {
 	outline: none;
 }
 
+#get-weather-btn {
+	border-radius: 5px;
+	padding: 8px 15px;
+	margin: 20px 0 10px 0;
+	cursor: pointer;
+	background: rgb(34, 86, 155);
+	border: 1px solid rgba(32, 37, 48, 0.71);
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.69);
+	color: white;
+	box-shadow: 0px 0px 5px rgba(173, 173, 173, 0.32);
+}
+
 /*-------------- Content ----------------*/
 
 #main-content {
@@ -131,6 +145,7 @@ body {
 	left: 0;
 	z-index: 99;
 	height: 100%;
+	overflow-y: auto;
 	background: rgb(230, 230, 230);
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
@@ -165,6 +180,7 @@ body {
 #main-content .container {
 	width: 80%;
 	margin: 0 auto;
+	max-width: 680px;
 	padding-top: 5px;
 }
 
@@ -179,14 +195,16 @@ body {
 	width: 100%;
 	height: auto;
 	background: #5D5D5D;
-	font-size: 43px;
-	color: rgb(235, 234, 197);
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.47);
 	border-radius: 5px;
 	padding: 35% 0;
-	cursor: pointer;
 }
 #main-content .container .item .thumbnail:hover { box-shadow: 0 0 15px rgb(178, 222, 247); }
+
+.item .description {
+	color: rgba(255, 255, 255, 0.46);
+	font-size: 12px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.47);
+}
 
 #main-content .container .item .thumbnail .date {
 	position: absolute;
@@ -255,6 +273,11 @@ body {
           animation-duration: 1s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
+}
+
+.animated.ng-leave {
+  -webkit-animation-duration: 0s;
+          animation-duration: 0s;
 }
 
 .item.animated.ng-enter {

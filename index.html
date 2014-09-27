@@ -25,27 +25,30 @@
 			<li class="title"><i class="wi wi-day-lightning"></i> Weather</li>
 			<li class="sub-title">Выберите город:</li>
 			<li>
-				<select id="city-list">
-					<option value="Moscow">Москва</option>
-					<option value="Saint Petersburg">Ст. Петербург</option>
-					<option value="Nizhny Novgorod">Нижний Новгород</option>
-					<option value="Novosibirsk">Новосибирск</option>
-					<option value="Yekaterinburg">Екатеринбург</option>
-					<option value="Kazan">Казань</option>
-				</select>
+				<div class="wrapper">
+					<select id="city-list" ng-model="selectedCity" ng-options="city.name for city in cityList">
+					</select>
+				</div>
+				<div class="wrapper">
+					<button id="get-weather-btn" ng-click="showForecast()">Показать</button>
+				</div>
 			</li>
 		</ul>
 	</div>
 
 	<div id="main-content">
-		<h1>Москва</h1>
+		<h1>{{ cityTitle }}</h1>
 		<div class="container row">
 
 			<div ng-repeat="day in forecast" class="col-1-4 item animated">
 				<div class="thumbnail">
-					<div class="date">{{ convertDate(day.dt) }}</div>
-					<img class="icon" ng-src="{{ getWeatherIcon(day.weather[0].icon) }}" />
-					<div class="temperature"><span class="high">{{ day.temp.max.toFixed(0) }}°</span> <span class="low">{{ day.temp.min.toFixed(0) }}°</span></div>
+					<div class="date">{{ day.date }}</div>
+					<img class="icon" ng-src="{{ day.icon_url }}" />
+					<div class="description">{{ day.description }}</div>
+					<div class="temperature">
+						<span class="high">{{ day.temp_max }}°</span>
+						<span class="low">{{ day.temp_min }}°</span>
+					</div>
 				</div>
 				<div class="weather-pop-up"></div>
 			</div>
