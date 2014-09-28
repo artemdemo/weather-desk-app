@@ -8,8 +8,8 @@ var weather = angular.module('weather', ['ngAnimate'])
 		getNewForecast: function( city ){
 			var deferred = $q.defer();
 			var api_url = weatherApiURL + city.value + weatherApiParam;
-			$http({method: 'GET', url: api_url}).
-			//$http({method: 'GET', url: 'moscow.json'}).
+			//$http({method: 'GET', url: api_url}).
+			$http({method: 'GET', url: 'moscow.json'}).
 				success(function(data, status, headers, config) {
 					deferred.resolve( data.list );
 				}).
@@ -71,7 +71,8 @@ var weather = angular.module('weather', ['ngAnimate'])
 						temp_min: list[index].temp.min.toFixed(0),
 						temp_max: list[index].temp.max.toFixed(0),
 						description: list[index].weather[0].description,
-						icon_url: weatherFactory.getWeatherIcon( list[index].weather[0].icon )
+						icon_url: weatherFactory.getWeatherIcon( list[index].weather[0].icon ),
+						temp: list[index].temp
 					});
 				}, timer);
 			})(i);
@@ -87,8 +88,12 @@ var weather = angular.module('weather', ['ngAnimate'])
 		})
 	}
 
+	$scope.currentPopUpDay = null;
+
 	$scope.openDayPopUp = function(day) {
 		console.log( day );
+		$scope.currentPopUpDay = day;
+
 		var selector = '.day-' + day.id;
 		var dayItemElement = document.querySelector(selector);
 		var thumbnailElement = dayItemElement.querySelector('.thumbnail');

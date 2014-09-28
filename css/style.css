@@ -42,6 +42,7 @@ body {
 }
 
 /*--------------- Icons -----------------*/
+
 @font-face {
 	font-weight: normal;
 	font-style: normal;
@@ -72,8 +73,8 @@ body {
 	z-index: 100;
 	display: block;
 	overflow: hidden;
-	width: 3em;
-	height: 3em;
+	width: 2em;
+	height: 2em;
 	text-align: center;
 	line-height: 3;
 	cursor: pointer;
@@ -85,8 +86,8 @@ body {
 
 .icon-close {
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 0;
+	right: 10px;
 }
 
 .icon-close:hover {
@@ -253,6 +254,7 @@ body {
 	background: #5D5D5D;
 	border-radius: 5px;
 	padding: 35% 0;
+	cursor: pointer;
 }
 #main-content .container .item .thumbnail:hover { box-shadow: 0 0 15px rgb(178, 222, 247); }
 
@@ -282,6 +284,7 @@ body {
 	font-size: 16px;
 }
 #main-content .container .item .thumbnail .temperature .low { opacity: 0.7; }
+
 
 /*-------------------------------------------------*/
 /*--------------- Menu Animation ------------------*/
@@ -323,6 +326,7 @@ body {
 
 /*-------------------------------------------------*/
 /*--------------- Weather Animation ---------------*/
+/*-------------------------------------------------*/
 
 .animated {
   -webkit-animation-duration: 1s;
@@ -376,39 +380,6 @@ body {
   }
 }
 
-@keyframes flipInX {
-  0% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
-    -webkit-transition-timing-function: ease-in;
-            transition-timing-function: ease-in;
-    opacity: 0;
-  }
-
-  40% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
-    -webkit-transition-timing-function: ease-in;
-            transition-timing-function: ease-in;
-  }
-
-  60% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
-    opacity: 1;
-  }
-
-  80% {
-    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-            transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
-  }
-
-  100% {
-    -webkit-transform: perspective(400px);
-            transform: perspective(400px);
-  }
-}
-
 
 /*---------------------------------------------------------*/
 /*------------------ Pop Up Animation ---------------------*/
@@ -419,9 +390,14 @@ body {
 }
 
 #day-pop-up {
+	visibility: hidden;
 	position: absolute;
 	z-index: 49;
 	margin: 0;
+	color: white;
+	font-size: 14px;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.46);
+	padding: 10px;
 	background: none;
 	border-radius: 5px;
 }
@@ -442,6 +418,7 @@ body {
 }
 
 #day-pop-up.pop-up-open {
+	visibility: visible;
 	z-index: 100;
 	background: #5D5D5D;
 	top: 50% !important;
@@ -455,4 +432,34 @@ body {
 
 #day-pop-up-bg.pop-up-open::before {
 	opacity: 1;
+}
+
+#day-pop-up .icon-close {
+	color: rgb(65, 65, 65);
+}
+
+#day-pop-up .date {
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+
+#day-pop-up .day-forecast .temp {
+	float: left;
+	width: 25%;
+	text-align: center;
+}
+
+#day-pop-up .day-forecast .temp .title {
+	font-weight: 700;
+	margin: 10px 0;
+}
+
+#day-pop-up .icon,
+#day-pop-up .description {
+	float: left;
+}
+
+#day-pop-up .description {
+	line-height: 33px;
+	color: rgba(255, 255, 255, 0.66);
 }
