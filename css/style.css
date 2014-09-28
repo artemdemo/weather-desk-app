@@ -90,10 +90,6 @@ body {
 	right: 10px;
 }
 
-.icon-close:hover {
-	color: #fff;
-}
-
 /*--------------- Menu -----------------*/
 
 #left-menu {
@@ -394,12 +390,21 @@ body {
 	position: absolute;
 	z-index: 49;
 	margin: 0;
+	display: none;
 	color: white;
 	font-size: 14px;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.46);
 	padding: 10px;
 	background: none;
 	border-radius: 5px;
+	-webkit-transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+	transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+}
+
+#day-pop-up .content-wrap {
+	opacity: 0;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 }
 
 #day-pop-up-bg::before {
@@ -423,9 +428,9 @@ body {
 	background: #5D5D5D;
 	top: 50% !important;
 	left: 50% !important;
-	width: 400px !important;
+	width: 350px !important;
 	height: 200px !important;
-	margin: -100px 0 0 -200px;
+	margin: -100px 0 0 -175px;
 	-webkit-transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 	transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 }
@@ -436,6 +441,10 @@ body {
 
 #day-pop-up .icon-close {
 	color: rgb(65, 65, 65);
+}
+
+#day-pop-up .icon-close:hover {
+	color: #fff;
 }
 
 #day-pop-up .date {

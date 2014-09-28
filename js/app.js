@@ -91,7 +91,8 @@ var weather = angular.module('weather', ['ngAnimate'])
 	$scope.currentPopUpDay = null;
 
 	$scope.openDayPopUp = function(day) {
-		console.log( day );
+		if ( angular.isObject($scope.currentPopUpDay) ) return false;
+
 		$scope.currentPopUpDay = day;
 
 		var selector = '.day-' + day.id;
@@ -103,16 +104,35 @@ var weather = angular.module('weather', ['ngAnimate'])
 		popUpElement.style.height = thumbnailElement.offsetHeight + 'px';
 		popUpElement.style.top = thumbnailElement.getBoundingClientRect().top + 'px';
 		popUpElement.style.left = thumbnailElement.getBoundingClientRect().left + 'px';
+		popUpElement.style.display = "block";
 
 		$timeout(function(){
 			angular.element( dayItemElement ).toggleClass( 'pop-up-open' );
 			angular.element( popUpElement ).toggleClass( 'pop-up-open' );
 			angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
 		});
+
+		$timeout(function(){
+			popUpElement.querySelector('.content-wrap').style.opacity = 1;
+		}, 300);
 	}
 
 	$scope.closePopUp = function() {
-		
+		var selector = '.day-' + $scope.currentPopUpDay.id;
+		var dayItemElement = document.querySelector(selector);
+		var popUpElement = document.querySelector( '#day-pop-up' );
+
+		$scope.currentPopUpDay = null;
+		popUpElement.removeAttribute("style");
+		popUpElement.querySelector('.content-wrap').style.opacity = 0;
+
+		angular.element( dayItemElement ).toggleClass( 'pop-up-open' );
+		angular.element( popUpElement ).toggleClass( 'pop-up-open' );
+		angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
+	}
+
+	function togglePopUp() {
+
 	}
 
 	$scope.addDayClass = function( index ) {

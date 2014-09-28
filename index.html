@@ -58,28 +58,30 @@
 		</div>
 
 		<div id="day-pop-up">
-			<span class="icon icon-close" ng-click="closePopUp()">Close the dialog</span>
-			<div class="date">{{ currentPopUpDay.date }}</div>
-			<div class="row">
-				<img class="icon" ng-src="{{ currentPopUpDay.icon_url }}" />
-				<div class="description">{{ currentPopUpDay.description }}</div>
-			</div>
-			<div class="day-forecast row">
-				<div class="temp morn">
-					<div class="title">Утро</div>
-					{{ currentPopUpDay.temp.morn }}°
+			<div class="content-wrap">
+				<span class="icon icon-close" ng-click="closePopUp()">Close the dialog</span>
+				<div class="date">{{ currentPopUpDay.date }}</div>
+				<div class="row">
+					<img class="icon" ng-src="{{ currentPopUpDay.icon_url }}" />
+					<div class="description">{{ currentPopUpDay.description }}</div>
 				</div>
-				<div class="temp day">
-					<div class="title">День</div>
-					{{ currentPopUpDay.temp.day }}°
-				</div>
-				<div class="temp eve">
-					<div class="title">Вечер</div>
-					{{ currentPopUpDay.temp.eve }}°
-				</div>
-				<div class="temp night">
-					<div class="title">Ночь</div>
-					{{ currentPopUpDay.temp.night }}°
+				<div class="day-forecast row">
+					<div class="temp morn">
+						<div class="title">Утро</div>
+						{{ currentPopUpDay.temp.morn.toFixed(0) }}°
+					</div>
+					<div class="temp day">
+						<div class="title">День</div>
+						{{ currentPopUpDay.temp.day.toFixed(0) }}°
+					</div>
+					<div class="temp eve">
+						<div class="title">Вечер</div>
+						{{ currentPopUpDay.temp.eve.toFixed(0) }}°
+					</div>
+					<div class="temp night">
+						<div class="title">Ночь</div>
+						{{ currentPopUpDay.temp.night.toFixed(0) }}°
+					</div>
 				</div>
 			</div>
 		</div>
