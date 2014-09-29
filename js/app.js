@@ -8,8 +8,8 @@ var weather = angular.module('weather', ['ngAnimate'])
 		getNewForecast: function( city ){
 			var deferred = $q.defer();
 			var api_url = weatherApiURL + city.value + weatherApiParam;
-			//$http({method: 'GET', url: api_url}).
-			$http({method: 'GET', url: 'moscow.json'}).
+			$http({method: 'GET', url: api_url}).
+			//$http({method: 'GET', url: 'moscow.json'}).
 				success(function(data, status, headers, config) {
 					deferred.resolve( data.list );
 				}).
@@ -40,6 +40,7 @@ var weather = angular.module('weather', ['ngAnimate'])
 	$scope.menuOpen = '';
 	$scope.menuToggle = function() {
 		$scope.menuOpen = ! $scope.menuOpen ? 'st-menu-open' : '';
+		if ( angular.isObject($scope.currentPopUpDay) ) $scope.closePopUp();
 	}
 
 	$scope.cityList = [
@@ -106,10 +107,13 @@ var weather = angular.module('weather', ['ngAnimate'])
 		popUpElement.style.left = thumbnailElement.getBoundingClientRect().left + 'px';
 		popUpElement.style.display = "block";
 
+		
+
 		$timeout(function(){
 			angular.element( dayItemElement ).toggleClass( 'pop-up-open' );
 			angular.element( popUpElement ).toggleClass( 'pop-up-open' );
 			angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
+			dayItemElement.style.visibility = "hidden";
 		});
 
 		$timeout(function(){
@@ -123,12 +127,21 @@ var weather = angular.module('weather', ['ngAnimate'])
 		var popUpElement = document.querySelector( '#day-pop-up' );
 
 		$scope.currentPopUpDay = null;
-		popUpElement.removeAttribute("style");
 		popUpElement.querySelector('.content-wrap').style.opacity = 0;
+
+		popUpElement.style.visibility = "visible";
+		popUpElement.style.padding = "0";
+		popUpElement.style.zIndex = "100";
 
 		angular.element( dayItemElement ).toggleClass( 'pop-up-open' );
 		angular.element( popUpElement ).toggleClass( 'pop-up-open' );
-		angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
+		
+
+		$timeout(function(){
+			dayItemElement.style.visibility = "visible";
+			popUpElement.removeAttribute("style");
+			angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
+		}, 500);
 	}
 
 	function togglePopUp() {

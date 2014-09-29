@@ -163,7 +163,7 @@ body {
 	padding: 27px 0;
 }
 
-#city-list {
+.op-list {
 	border: 1px solid white;
 	font-size: 16px;
 	cursor: pointer;
@@ -381,10 +381,6 @@ body {
 /*------------------ Pop Up Animation ---------------------*/
 /*---------------------------------------------------------*/
 
-#main-content .container .item.pop-up-open {
-	position: initial;
-}
-
 #day-pop-up {
 	visibility: hidden;
 	position: absolute;
@@ -393,18 +389,16 @@ body {
 	display: none;
 	color: white;
 	font-size: 14px;
+	background: #5D5D5D;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.46);
 	padding: 10px;
-	background: none;
 	border-radius: 5px;
-	-webkit-transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
-	transition: width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+	-webkit-transition: opacity 0.3s 0.5s, width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
+	transition: opacity 0.3s 0.5s, width 0.4s 0.1s, height 0.4s 0.1s, top 0.4s 0.1s, left 0.4s 0.1s, margin 0.4s 0.1s;
 }
 
 #day-pop-up .content-wrap {
 	opacity: 0;
-	-webkit-transition: opacity 0.5s;
-	transition: opacity 0.5s;
 }
 
 #day-pop-up-bg::before {
@@ -425,7 +419,6 @@ body {
 #day-pop-up.pop-up-open {
 	visibility: visible;
 	z-index: 100;
-	background: #5D5D5D;
 	top: 50% !important;
 	left: 50% !important;
 	width: 350px !important;
@@ -469,6 +462,6 @@ body {
 }
 
 #day-pop-up .description {
-	line-height: 33px;
+	line-height: 45px;
 	color: rgba(255, 255, 255, 0.66);
 }
