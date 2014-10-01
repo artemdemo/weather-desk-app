@@ -1,4 +1,4 @@
-var weather = angular.module('weather', ['ngAnimate'])
+﻿var weather = angular.module('weather', ['ngAnimate'])
 
 .factory('weatherFactory', function( $q, $http ){
 	var weatherApiURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
