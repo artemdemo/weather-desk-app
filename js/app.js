@@ -20,6 +20,7 @@
 		C_3: 'Novosibirsk',
 		C_4: 'Yekaterinburg',
 		C_5: 'Kazan',
+		SHOW: 'Show',
 		CHOOSE_CITY: 'Choose city',
 		CHOOSE_LNG: 'Choose language',
 		LOADING_DATA: 'Loading data...',
