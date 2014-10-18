@@ -13,6 +13,7 @@
 
 	<script src="js/angular/angular.min.js"></script>
 	<script src="js/angular/angular-animate.min.js"></script>
+	<script src="js/angular/angular-translate.min.js"></script>
 
 	<script src="js/app.js"></script>
 
@@ -25,14 +26,21 @@
 		<div id="menuBtn" ng-click="menuToggle()"><i class="wi wi-lightning"></i></div>
 		<ul class="menu">
 			<li class="title"><i class="wi wi-day-lightning"></i> Weather</li>
-			<li class="sub-title">Выберите город:</li>
+			<li class="sub-title">{{ 'CHOOSE_LNG' | translate }}:</li>
+			<li>
+				<ul id="choose-lng">
+					<li ng-class="{ active : activeLanguage('RU') }" ng-click="changeLanguage('RU')">Ru</li>
+					<li ng-class="{ active : activeLanguage('EN') }" ng-click="changeLanguage('EN')">En</li>
+				</ul>
+			</li>
+			<li class="sub-title">{{ 'CHOOSE_CITY' | translate }}:</li>
 			<li>
 				<div class="wrapper">
 					<select class="op-list" ng-model="selectedCity" ng-options="city.name for city in cityList">
 					</select>
 				</div>
 				<div class="wrapper">
-					<button id="get-weather-btn" ng-click="showForecast()">Показать</button>
+					<button id="get-weather-btn" ng-click="showForecast()">{{ 'SHOW' | translate }}</button>
 				</div>
 			</li>
 		</ul>
@@ -41,7 +49,7 @@
 	<div id="main-content">
 		<h1>{{ cityTitle }}</h1>
 
-		<div id="loading" ng-hide="forecast.length > 0">Загрузка данных...</div>
+		<div id="loading" ng-hide="forecast.length > 0">{{ 'LOADING_DATA' | translate }}</div>
 
 		<div class="container row">
 
@@ -69,19 +77,19 @@
 				</div>
 				<div class="day-forecast row">
 					<div class="temp morn">
-						<div class="title">Утро</div>
+						<div class="title">{{ 'MORNING' | translate }}</div>
 						{{ currentPopUpDay.temp.morn.toFixed(0) }}°
 					</div>
 					<div class="temp day">
-						<div class="title">День</div>
+						<div class="title">{{ 'DAY' | translate }}</div>
 						{{ currentPopUpDay.temp.day.toFixed(0) }}°
 					</div>
 					<div class="temp eve">
-						<div class="title">Вечер</div>
+						<div class="title">{{ 'EVENING' | translate }}</div>
 						{{ currentPopUpDay.temp.eve.toFixed(0) }}°
 					</div>
 					<div class="temp night">
-						<div class="title">Ночь</div>
+						<div class="title">{{ 'NIGHT' | translate }}</div>
 						{{ currentPopUpDay.temp.night.toFixed(0) }}°
 					</div>
 				</div>

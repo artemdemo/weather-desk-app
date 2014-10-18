@@ -1,13 +1,72 @@
-﻿var weather = angular.module('weather', ['ngAnimate'])
+﻿var weather = angular.module('weather', ['ngAnimate', 'pascalprecht.translate'])
 
-.factory('weatherFactory', function( $q, $http ){
+.config(function ($translateProvider) {
+	$translateProvider.translations('EN', {
+		M_0: 'Jan',
+		M_1: 'Feb',
+		M_2: 'Mar',
+		M_3: 'Apr',
+		M_4: 'May',
+		M_5: 'Jun',
+		M_6: 'Jul',
+		M_7: 'Aug',
+		M_8: 'Sep',
+		M_9: 'Oct',
+		M_10: 'Nov',
+		M_11: 'Dec',
+		C_0: 'Moscow',
+		C_1: 'Saint Petersburg',
+		C_2: 'Nizhny Novgorod',
+		C_3: 'Novosibirsk',
+		C_4: 'Yekaterinburg',
+		C_5: 'Kazan',
+		CHOOSE_CITY: 'Choose city',
+		CHOOSE_LNG: 'Choose language',
+		LOADING_DATA: 'Loading data...',
+		MORNING: 'Morning',
+		DAY: 'Day',
+		EVENING: 'Evening',
+		NIGHT: 'Night',
+	});
+	$translateProvider.translations('RU', {
+		M_0: 'Янв',
+		M_1: 'Фев',
+		M_2: 'Мар',
+		M_3: 'Апр',
+		M_4: 'Май',
+		M_5: 'Июнь',
+		M_6: 'Июлб',
+		M_7: 'Авг',
+		M_8: 'Сен',
+		M_9: 'Окт',
+		M_10: 'Ноя',
+		M_11: 'Дек',
+		C_0: 'Москва',
+		C_1: 'Ст. Петербург',
+		C_2: 'Нижний Новгород',
+		C_3: 'Новосибирск',
+		C_4: 'Екатеринбург',
+		C_5: 'Казань',
+		CHOOSE_CITY: 'Выберите город',
+		CHOOSE_LNG: 'Выберите язык',
+		SHOW: 'Показать',
+		LOADING_DATA: 'Загрузка данных...',
+		MORNING: 'Утро',
+		DAY: 'День',
+		EVENING: 'Вечер',
+		NIGHT: 'Ночь',
+	});
+	$translateProvider.preferredLanguage('EN');
+})
+
+.factory('weatherFactory', function( $q, $http, $filter, $translate ){
 	var weatherApiURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
-	var weatherApiParam = "&units=metric&cnt=10&lang=ru";
+	var weatherApiParam = "&units=metric&cnt=10&lang=";
 
 	return {
 		getNewForecast: function( city ){
 			var deferred = $q.defer();
-			var api_url = weatherApiURL + city.value + weatherApiParam;
+			var api_url = weatherApiURL + city.value + weatherApiParam + $translate.use();
 			$http({method: 'GET', url: api_url}).
 			//$http({method: 'GET', url: 'moscow.json'}).
 				success(function(data, status, headers, config) {
@@ -23,7 +82,19 @@
 		convertDate: function(unix_stamp){
 			var a = new Date(unix_stamp*1000);
 			//var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-			var months = ['Янв','Фев','Мар','Апр','Май','Июнь','Июль','Авг','Сен','Окт','Ноя','Дек'];
+			//var months = ['Янв','Фев','Мар','Апр','Май','Июнь','Июль','Авг','Сен','Окт','Ноя','Дек'];
+			var months = [$filter('translate')('M_0'),
+										$filter('translate')('M_1'),
+										$filter('translate')('M_2'),
+										$filter('translate')('M_3'),
+										$filter('translate')('M_4'),
+										$filter('translate')('M_5'),
+										$filter('translate')('M_6'),
+										$filter('translate')('M_7'),
+										$filter('translate')('M_8'),
+										$filter('translate')('M_9'),
+										$filter('translate')('M_10'),
+										$filter('translate')('M_11')];
 			var month = months[a.getMonth() - 1];
 			var date = a.getDate();
 			var time = date + ' ' + month;
@@ -35,7 +106,7 @@
 	}
 })
 
-.controller('mainCtrl', function($scope, $timeout, weatherFactory){
+.controller('mainCtrl', function($scope, $timeout, $filter, $translate, weatherFactory){
 	
 	$scope.menuOpen = '';
 	$scope.menuToggle = function() {
@@ -43,14 +114,7 @@
 		if ( angular.isObject($scope.currentPopUpDay) ) $scope.closePopUp();
 	}
 
-	$scope.cityList = [
-		{name: 'Москва', value: 'Moscow'},
-		{name: 'Ст. Петербург', value: 'Saint Petersburg'},
-		{name: 'Нижний Новгород', value: 'Nizhny Novgorod'},
-		{name: 'Новосибирск', value: 'Novosibirsk'},
-		{name: 'Екатеринбург', value: 'Yekaterinburg'},
-		{name: 'Казань', value: 'Kazan'}
-	];
+	getCityList();
 
 	$scope.selectedCity = $scope.cityList[0];
 	$scope.cityTitle = $scope.selectedCity.name;
@@ -60,6 +124,36 @@
 	weatherFactory.getNewForecast( $scope.selectedCity ).then(function( list ){
 		createForecastList( list );
 	});
+
+	$scope.changeLanguage = function( lang ){
+		$translate.use( lang );
+		$scope.selectedCityValue = $scope.selectedCity.value;
+		getCityList();
+		$scope.cityList.forEach( refreshCityListTranslate );
+	};
+
+	$scope.activeLanguage = function( lang ) {
+		return lang == $translate.use();
+	};
+
+	// City list wouldn't refresh authomaticly by changing $scope.cityList
+	// because it depends on element fo the list and we changing name of the element, so it wouldn't be the same
+	function refreshCityListTranslate(element, index, array) {
+		if ( $scope.selectedCityValue == element.value ){
+			$scope.selectedCity = element;
+		}
+	}
+
+	function getCityList() {
+		$scope.cityList = [
+			{name: $filter('translate')('C_0'), value: 'Moscow'},
+			{name: $filter('translate')('C_1'), value: 'Saint Petersburg'},
+			{name: $filter('translate')('C_2'), value: 'Nizhny Novgorod'},
+			{name: $filter('translate')('C_3'), value: 'Novosibirsk'},
+			{name: $filter('translate')('C_4'), value: 'Yekaterinburg'},
+			{name: $filter('translate')('C_5'), value: 'Kazan'}
+		];
+	}
 
 	function createForecastList( list ) {
 		for ( var i = 0; i < list.length; i++ ) {
@@ -142,10 +236,6 @@
 			popUpElement.removeAttribute("style");
 			angular.element( document.querySelector( '#day-pop-up-bg' ) ).toggleClass( 'pop-up-open' );
 		}, 500);
-	}
-
-	function togglePopUp() {
-
 	}
 
 	$scope.addDayClass = function( index ) {

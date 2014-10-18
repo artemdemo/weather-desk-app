@@ -187,6 +187,40 @@ body {
 	box-shadow: 0px 0px 5px rgba(173, 173, 173, 0.32);
 }
 
+#choose-lng {
+	list-style-type: none;
+	border-radius: 5px;
+	display: inline-block;
+	background: rgb(34, 86, 155);
+	box-shadow: 0px 0px 5px rgba(173, 173, 173, 0.32);
+	border: 1px solid rgba(32, 37, 48, 0.32);
+	margin: 0;
+	padding: 0;
+}
+
+#choose-lng:after {
+	content: " ";
+	display: table;
+	clear: both;
+}
+
+#choose-lng li {
+	display: inline-block;
+	float: left;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.69);
+	border-right: 1px solid rgba(255, 255, 255, 0.12);
+	color: white;
+	padding: 10px 8px;
+	cursor: pointer;
+	border: 0;
+}
+
+#choose-lng li.active {
+	font-weight: 700;
+}
+
+#choose-lng li:last-of-type {	border-right: 0; }
+
 /*-------------- Content ----------------*/
 
 #main-content {
