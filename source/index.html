@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Приложение на AngularJS: анимация, работа с внешими API, $http, GET, promises</title>
+
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" type="text/css" href="dist/css/weather-icons.min.css">
+	<link rel="stylesheet" type="text/css" href="dist/css/style.css">
+
+	<script src="dist/app.js"></script>
+
+</head>
+<body ng-app="weather" ng-controller="mainCtrl">
+
+<div id="st-container" class="anim-scale-down" ng-class="menuOpen">
+
+	<div id="left-menu" class="anim-scale-down">
+		<div id="menuBtn" ng-click="menuToggle()"><i class="wi wi-lightning"></i></div>
+		<ul class="menu">
+			<li class="title"><i class="wi wi-day-lightning"></i> Weather</li>
+			<li class="sub-title">{{ 'CHOOSE_LNG' | translate }}:</li>
+			<li>
+				<ul id="choose-lng">
+					<li ng-class="{ active : activeLanguage('RU') }" ng-click="changeLanguage('RU')">Ru</li>
+					<li ng-class="{ active : activeLanguage('EN') }" ng-click="changeLanguage('EN')">En</li>
+				</ul>
+			</li>
+			<li class="sub-title">{{ 'CHOOSE_CITY' | translate }}:</li>
+			<li>
+				<div class="wrapper">
+					<select class="op-list" ng-model="selectedCity" ng-options="city.name for city in cityList">
+					</select>
+				</div>
+				<div class="wrapper">
+					<button id="get-weather-btn" ng-click="showForecast()">{{ 'SHOW' | translate }}</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div id="main-content">
+		<h1>{{ cityTitle }}</h1>
+
+		<div id="loading" ng-hide="forecast.length > 0">{{ 'LOADING_DATA' | translate }}</div>
+
+		<div class="container row">
+
+			<div ng-repeat="day in forecast" class="col-1-4 item animated" ng-class="addDayClass($index)" ng-click="openDayPopUp(day)">
+				<div class="thumbnail">
+					<div class="date">{{ day.date }}</div>
+					<img class="icon" ng-src="{{ day.icon_url }}" />
+					<div class="description">{{ day.description }}</div>
+					<div class="temperature">
+						<span class="high">{{ day.temp_max }}°</span>
+						<span class="low">{{ day.temp_min }}°</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="day-pop-up">
+			<div class="content-wrap">
+				<span class="icon icon-close" ng-click="closePopUp()">Close the dialog</span>
+				<div class="date">{{ currentPopUpDay.date }}</div>
+				<div class="row">
+					<img class="icon" ng-src="{{ currentPopUpDay.icon_url }}" />
+					<div class="description">{{ currentPopUpDay.description }}</div>
+				</div>
+				<div class="day-forecast row">
+					<div class="temp morn">
+						<div class="title">{{ 'MORNING' | translate }}</div>
+						{{ currentPopUpDay.temp.morn.toFixed(0) }}°
+					</div>
+					<div class="temp day">
+						<div class="title">{{ 'DAY' | translate }}</div>
+						{{ currentPopUpDay.temp.day.toFixed(0) }}°
+					</div>
+					<div class="temp eve">
+						<div class="title">{{ 'EVENING' | translate }}</div>
+						{{ currentPopUpDay.temp.eve.toFixed(0) }}°
+					</div>
+					<div class="temp night">
+						<div class="title">{{ 'NIGHT' | translate }}</div>
+						{{ currentPopUpDay.temp.night.toFixed(0) }}°
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="day-pop-up-bg"></div>
+
+	</div>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
