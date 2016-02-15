@@ -1,5 +1,7 @@
 ﻿var weather = angular.module('weather', ['ngAnimate', 'pascalprecht.translate'])
 
+.constant('APPID', '837dac2470b5688d6cee473f9c9c5ffd' )
+
 .config(function ($translateProvider) {
 	$translateProvider.translations('EN', {
 		M_0: 'Jan',
@@ -27,7 +29,7 @@
 		MORNING: 'Morning',
 		DAY: 'Day',
 		EVENING: 'Evening',
-		NIGHT: 'Night',
+		NIGHT: 'Night'
 	});
 	$translateProvider.translations('RU', {
 		M_0: 'Янв',
@@ -60,9 +62,9 @@
 	$translateProvider.preferredLanguage('EN');
 })
 
-.factory('weatherFactory', function( $q, $http, $filter, $translate ){
+.factory('weatherFactory', function( $q, $http, $filter, $translate, APPID ){
 	var weatherApiURL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
-	var weatherApiParam = "&units=metric&cnt=10&lang=";
+	var weatherApiParam = "&units=metric&cnt=10&appid=" + APPID + "&lang=";
 
 	return {
 		getNewForecast: function( city ){
